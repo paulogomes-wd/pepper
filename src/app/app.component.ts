@@ -9,8 +9,12 @@ import { AngularFireDatabase } from 'angularfire2/database';
 })
 export class AppComponent {
   title = 'app';
+  cuisines;
 
   constructor (public database: AngularFireDatabase){
-    console.log(database);
+    database.list('/cuisines').subscribe(data => {
+      this.cuisines = data;
+      console.log(this.cuisines);
+    });
   }
 }
